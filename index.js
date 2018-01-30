@@ -326,7 +326,12 @@ bot.onText(/\/top5/, query => {
                 $in: [query.chat.id]
             }
         })
-        .sort("-Counter_Goose")
+        .sort({
+            Counter_Goose: "desc"
+        })
+        .sort({
+            Name: "asc"
+        })
         .limit(5)
         .then(users => {
             let text_stat = "";

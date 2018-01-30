@@ -45,6 +45,7 @@ const bot = new TelegramBot(TOKEN, {
 bot.onText(/\/gusi/, query => {
     if (query.chat.id != "-302362122") {
         bot.sendMessage(query.chat.id, 'В этом чате нельзя использовать этого бота');
+        return;
     }
     if (query.chat.type == "private") {
         bot.sendMessage(
@@ -148,6 +149,7 @@ bot.onText(/\/gusi/, query => {
 bot.onText(/\/reg/, query => {
     if (query.chat.id != "-302362122") {
         bot.sendMessage(query.chat.id, 'В этом чате нельзя использовать этого бота');
+        return;
     }
     if (query.chat.type == "private") {
         bot.sendMessage(
@@ -187,6 +189,7 @@ bot.onText(/\/reg/, query => {
 bot.onText(/\/me/, query => {
     if (query.chat.id != "-302362122") {
         bot.sendMessage(query.chat.id, 'В этом чате нельзя использовать этого бота');
+        return;
     }
     if (query.chat.type == "private") {
         bot.sendMessage(
@@ -236,6 +239,7 @@ bot.onText(/\/me/, query => {
 bot.onText(/\/stat/, query => {
     if (query.chat.id != "-302362122") {
         bot.sendMessage(query.chat.id, 'В этом чате нельзя использовать этого бота');
+        return;
     }
     if (query.chat.type == "private") {
         bot.sendMessage(
@@ -285,6 +289,7 @@ bot.onText(/\/stat/, query => {
 bot.onText(/\/help/, query => {
     if (query.chat.id != "-302362122") {
         bot.sendMessage(query.chat.id, 'В этом чате нельзя использовать этого бота');
+        return;
     }
     if (query.chat.type == "private") {
         bot.sendMessage(
@@ -305,6 +310,7 @@ bot.onText(/\/help/, query => {
 bot.onText(/\/top5/, query => {
     if (query.chat.id != "-302362122") {
         bot.sendMessage(query.chat.id, 'В этом чате нельзя использовать этого бота');
+        return;
     }
     if (query.chat.type == "private") {
         bot.sendMessage(

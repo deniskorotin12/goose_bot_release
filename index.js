@@ -1,12 +1,32 @@
 const TelegramBot = require("node-telegram-bot-api");
-const TOKEN = "479215318:AAENNSIFasERmQy5i4rve48latNkAPejOwo";
+const mysql = require('mysql');
+const TOKEN = "404568801:AAGbYs522aLjZ1IqH7nIFCa-gbCLaJSQUnI";
 const debug = require("./modules/helpers");
 const mongoose = require("mongoose");
 const hours = 13;
 const minutes = 00;
+
+// var con = mysql.createConnection({
+//     host: "eu-cdbr-sl-lhr-01.cleardb.net",
+//     user: "b7f261211ea93d",
+//     password: "219fa464 "
+//   });
+
+//   con.connect(function(err) {
+//     if (err) throw err;
+//     console.log("Connected!");
+//     con.query("CREATE DATABASE gooseDataBase", function (err, result) {
+//         if (err) throw err;
+//         console.log("Database created");
+//       });
+//   });
+
+
+
+
 mongoose
     .connect(
-        "mongodb://KorotinDenysBot:11223344q4@ds113738.mlab.com:13738/telegram_bot"
+        "mongodb://KorotinDenysBot:11223344q4@ds117158.mlab.com:17158/telegram_bot_testing"
     )
     .then(() => console.log("MongoDB has started"))
     .catch(e => console.log(e));
@@ -43,9 +63,6 @@ const bot = new TelegramBot(TOKEN, {
 // };
 
 bot.onText(/\/gusi/, query => {
-    if (query.chat.id != "-302362122") {
-        bot.sendMessage(query.chat.id, 'В этом чате нельзя использовать этого бота');
-    }
     if (query.chat.type == "private") {
         bot.sendMessage(
             query.chat.id,
@@ -146,9 +163,6 @@ bot.onText(/\/gusi/, query => {
         });
 });
 bot.onText(/\/reg/, query => {
-    if (query.chat.id != "-302362122") {
-        bot.sendMessage(query.chat.id, 'В этом чате нельзя использовать этого бота');
-    }
     if (query.chat.type == "private") {
         bot.sendMessage(
             query.chat.id,
@@ -185,9 +199,6 @@ bot.onText(/\/reg/, query => {
 });
 
 bot.onText(/\/me/, query => {
-    if (query.chat.id != "-302362122") {
-        bot.sendMessage(query.chat.id, 'В этом чате нельзя использовать этого бота');
-    }
     if (query.chat.type == "private") {
         bot.sendMessage(
             query.chat.id,
@@ -234,9 +245,6 @@ bot.onText(/\/me/, query => {
 });
 
 bot.onText(/\/stat/, query => {
-    if (query.chat.id != "-302362122") {
-        bot.sendMessage(query.chat.id, 'В этом чате нельзя использовать этого бота');
-    }
     if (query.chat.type == "private") {
         bot.sendMessage(
             query.chat.id,
@@ -283,9 +291,6 @@ bot.onText(/\/stat/, query => {
 });
 
 bot.onText(/\/help/, query => {
-    if (query.chat.id != "-302362122") {
-        bot.sendMessage(query.chat.id, 'В этом чате нельзя использовать этого бота');
-    }
     if (query.chat.type == "private") {
         bot.sendMessage(
             query.chat.id,
@@ -302,10 +307,12 @@ bot.onText(/\/help/, query => {
     );
 });
 
+bot.onText(/\/testBot/, query=>{
+
+  
+});
+
 bot.onText(/\/top5/, query => {
-    if (query.chat.id != "-302362122") {
-        bot.sendMessage(query.chat.id, 'В этом чате нельзя использовать этого бота');
-    }
     if (query.chat.type == "private") {
         bot.sendMessage(
             query.chat.id,
@@ -320,7 +327,12 @@ bot.onText(/\/top5/, query => {
                 $in: [query.chat.id]
             }
         })
-        .sort("-Counter_Goose")
+        .sort({
+            Counter_Goose: "desc"
+        })
+        .sort({
+            Name: "asc"
+        })
         .limit(5)
         .then(users => {
             let text_stat = "";
@@ -349,3 +361,6 @@ bot.onText(/\/top5/, query => {
 // help - Помощь по командам
 // gusi - Определить гуся
 // top5 - Вывести Топ 5 гусей
+
+
+
